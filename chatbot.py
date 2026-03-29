@@ -1,4 +1,5 @@
 import re
+import gradio as gr
 responses = {
     "hello": "Hi there! How can I assist you today?",
     "hi": "Hello! How can I help you?",
@@ -36,6 +37,8 @@ def chatbot_response(user_input):
     return responses["default"]
 
 #main function for chatbot
+def chat(user_input):
+    return chatbot_response(user_input)
 interface = gr.Interface(
     fn=chat,
     inputs=gr.Textbox(
