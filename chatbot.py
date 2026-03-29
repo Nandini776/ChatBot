@@ -36,19 +36,16 @@ def chatbot_response(user_input):
     return responses["default"]
 
 #main function for chatbot
-def chatbot():
-    print("Chatbot:Hello! I'm here to assist you.(type 'bye' to exit)")
-    while True:
-        #get user input first
-        user_input=input("You : ")
-        #if user types'bye', exit loop
-        if user_input.lower() =='bye':
-            print("chatbot:GoodBye , Have a great day.")
-            break
+interface = gr.Interface(
+    fn=chat,
+    inputs=gr.Textbox(
+        placeholder="💬 Type your message here...",
+        lines=2
+    ),
+    outputs=gr.Textbox(label="🤖 Bot Reply"),
+    title="🤖 My Smart Chatbot",
+    description="Ask me anything! (Try: hello, joke, help)",
+    theme="soft"   # 🔥 better UI
+)
 
-        #get chatbots response based on user input
-        reply=chatbot_response(user_input)
-        print (f"Chatbot: {reply}")
-
-#run the chatbot
-chatbot()
+interface.launch()
